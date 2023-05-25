@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+	<title>Frontend Mentor | Interactive card details form</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<section class="payment-form">
+			<div class="payment-form__img"></div>
+			<div class="payment-form__card-form">
+				<div class="card-form__inner">
+					<div class="card-box">
+						<div class="card-front">
+							<div class="card-front__inner">
+								<div class="card-front__logo">
+									<svg width="84" height="47" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<ellipse cx="23.478" cy="23.5" rx="23.478" ry="23.5" fill="#fff" />
+										<path
+											d="M83.5 23.5c0 5.565-4.507 10.075-10.065 10.075-5.559 0-10.065-4.51-10.065-10.075 0-5.565 4.506-10.075 10.065-10.075 5.558 0 10.065 4.51 10.065 10.075Z"
+											stroke="#fff" />
+									</svg>
+								</div>
+								<p class="card-front__card-number">
+									0000 0000 0000 0000
+								</p>
+								<div class="card-front__footer">
+									<p class="card-front__holder-name">JANE APPLESEED</p>
+									<div class="card-front__expiration">
+										<span class="card-front__exp-month">00</span>
+										/
+										<span class="card-front__exp-year">00</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card-back">
+							<p class="card-back__cvc">000</p>
+						</div>
+					</div>
+					<form class="form" id="form" action="#">
+						<div class="input-control input-control__name">
+							<div class="input-control__inner">
+								<label class="label" for="cardholder-name">Cardholder Name</label>
+								<input class="input" id="cardholder-name" type="text" maxlength="20"
+									placeholder="e.g. Jane Appleseed">
+								<p class="error-text"></p>
+							</div>
+						</div>
+						<div class="input-control input-control__number">
+							<div class="input-control__inner">
+								<label class="label" for="card-number">Card Number</label>
+								<input class="input" id="card-number" type="text" inputmode="numeric" maxlength="19"
+									placeholder="e.g. 1234 5678 9123 0000">
+								<p class="error-text"></p>
+							</div>
+						</div>
+						<div class="input-control input-control__date">
+							<fieldset class="input-control__inner">
+								<legend class="label">Exp. Date (MM/YY)</legend>
+								<input class="input" id="expiration-month" type="text" pattern="[0-9]*" inputmode="numeric"
+									maxlength="2" placeholder="MM">
+								<input class="input" id="expiration-year" type="text" pattern="[0-9]*" inputmode="numeric"
+									maxlength="2" placeholder="YY">
+								<p class="error-text"></p>
+							</fieldset>
+						</div>
+						<div class="input-control input-control__cvc">
+							<div class="input-control__inner">
+								<label class="label" for="cvc">CVC</label>
+								<input class="input" id="cvc" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="3"
+									placeholder="e.g. 123">
+								<p class="error-text"></p>
+							</div>
+						</div>
+						<input class="submit-btn" id="submit-btn" type="submit" value="Confirm">
+					</form>
+				</div>
+			</div>
+		</section>
+		<section>
+			<!-- Thank you!
+	We've added your card details
+	Continue -->
+		</section>
+	</div>
+	<script src="https://unpkg.com/imask"></script>
+	<script src="./script.js"></script>
+</body>
+
+</html>
