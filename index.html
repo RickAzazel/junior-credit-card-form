@@ -44,49 +44,55 @@
 						</div>
 					</div>
 					<form class="form" id="form" action="#">
-						<div class="input-control input-control__name">
-							<div class="input-control__inner">
-								<label class="label" for="cardholder-name">Cardholder Name</label>
-								<input class="input" id="cardholder-name" type="text" maxlength="20"
-									placeholder="e.g. Jane Appleseed">
-								<p class="error-text"></p>
+						<div class="form__inner">
+							<div class="input-control input-control__name">
+								<div class="input-control__inner">
+									<label class="label" for="cardholder-name">Cardholder Name</label>
+									<input class="input" id="cardholder-name" type="text" maxlength="20"
+										placeholder="e.g. Jane Appleseed">
+									<p class="error-text"></p>
+								</div>
 							</div>
-						</div>
-						<div class="input-control input-control__number">
-							<div class="input-control__inner">
-								<label class="label" for="card-number">Card Number</label>
-								<input class="input" id="card-number" type="text" inputmode="numeric" maxlength="19"
-									placeholder="e.g. 1234 5678 9123 0000">
-								<p class="error-text"></p>
+							<div class="input-control input-control__number">
+								<div class="input-control__inner">
+									<label class="label" for="card-number">Card Number</label>
+									<input class="input" id="card-number" type="text" inputmode="numeric" maxlength="19"
+										placeholder="e.g. 1234 5678 9123 0000">
+									<p class="error-text"></p>
+								</div>
 							</div>
-						</div>
-						<div class="input-control input-control__date">
-							<fieldset class="input-control__inner">
-								<legend class="label">Exp. Date (MM/YY)</legend>
-								<input class="input" id="expiration-month" type="text" pattern="[0-9]*" inputmode="numeric"
-									maxlength="2" placeholder="MM">
-								<input class="input" id="expiration-year" type="text" pattern="[0-9]*" inputmode="numeric"
-									maxlength="2" placeholder="YY">
-								<p class="error-text"></p>
-							</fieldset>
-						</div>
-						<div class="input-control input-control__cvc">
-							<div class="input-control__inner">
-								<label class="label" for="cvc">CVC</label>
-								<input class="input" id="cvc" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="3"
-									placeholder="e.g. 123">
-								<p class="error-text"></p>
+							<div class="input-control input-control__date">
+								<div class="input-control__inner">
+									<div class="label">Exp. Date (MM/YY)</div>
+									<input class="input" id="expiration-month" type="text" pattern="[0-9]*" inputmode="numeric"
+										maxlength="2" placeholder="MM">
+									<input class="input" id="expiration-year" type="text" pattern="[0-9]*" inputmode="numeric"
+										maxlength="2" placeholder="YY">
+									<p class="error-text"></p>
+								</div>
 							</div>
+							<div class="input-control input-control__cvc">
+								<div class="input-control__inner">
+									<label class="label" for="cvc">CVC</label>
+									<input class="input" id="cvc" type="text" pattern="[0-9]*" inputmode="numeric" maxlength="3"
+										placeholder="e.g. 123">
+									<p class="error-text"></p>
+								</div>
+							</div>
+							<input class="btn submit-btn" id="submit-btn" type="submit" value="Confirm">
 						</div>
-						<input class="submit-btn" id="submit-btn" type="submit" value="Confirm">
 					</form>
+					<div class="complete-window">
+						<div class="complete-window__inner">
+							<div class="complete-window__icon"></div>
+							<h4 class="complete-window__title">Thank you!</h4>
+							<p class="complete-window__text">We've added your card details</p>
+							<button class="btn complete-window__btn">Continue</button>
+						</div>
+					</div>
 				</div>
 			</div>
-		</section>
-		<section>
-			<!-- Thank you!
-	We've added your card details
-	Continue -->
+
 		</section>
 	</div>
 	<script src="https://unpkg.com/imask"></script>

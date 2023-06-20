@@ -4,26 +4,33 @@ const expirationMonthInput = document.getElementById('expiration-month');
 const expirationYearInput = document.getElementById('expiration-year');
 const securityCodeInput = document.getElementById('cvc');
 const form = document.getElementById('form');
+const inputArray = [
+	cardHolderNameInput, 
+	cardNumberInput, 
+	expirationMonthInput, 
+	expirationYearInput, 
+	securityCodeInput
+];
 
 //Mask the Credit Card Number Input
-let cardNumberMask = new IMask(cardNumberInput, {
+const cardNumberMask = new IMask(cardNumberInput, {
 	mask: '0000 0000 0000 0000',
 });
 
 //Mask the Expiration Month
-let expirationMonthMask = new IMask(expirationMonthInput, {
+const expirationMonthMask = new IMask(expirationMonthInput, {
 	mask: IMask.MaskedRange,
 	from: 1,
 	to: 12,
 });
 
 //Mask the Expiration Year
-let expirationYearMask = new IMask(expirationYearInput, {
+const expirationYearMask = new IMask(expirationYearInput, {
 	mask: '00',
 });
 
 //Mask the security code
-let securityCodeMask = new IMask(securityCodeInput, {
+const securityCodeMask = new IMask(securityCodeInput, {
 	mask: '000',
 });
 
@@ -100,28 +107,60 @@ const validateInput = (element) => {
 	if (isEmpty) {
 		setError(element, "Can't be blank");
 	}
+
+	if (element === expirationMonthInput && element.value < 1) {
+		setError(element, "Wrong format");
+	}
+};
+
+const containsError = () => {
+	const errorArray = inputArray.map((input) => {
+		return input.classList.contains('error-border');
+	});
+
+	return errorArray.includes(true);
+};
+
+const elementAppearance = (element, command) => {
+	if (command === 'show') {
+		element.style.display = 'flex';
+	}
+	else if (command === 'hide') {
+		element.style.display = 'none';
+	}
 };
 
 /* ============== On Input Change Events ================ */
-cardHolderNameInput.addEventListener('input', () => {
-	const cardHolderNameOutput = document.querySelector('.card-front__holder-name');
-
-	checkInputLength(cardHolderNameInput);
-	validateOutput(cardHolderNameInput, cardHolderNameOutput, 'JANE APPLESEED');
-});
-
-cardNumberInput.addEventListener('input', () => {
-	const cardNumberOutput = document.querySelector('.card-front__card-number');
-
-	checkInputLength(cardNumberInput);
-	validateOutput(cardNumberInput, cardNumberOutput, '0000 0000 0000 0000');
-});
-
-expirationMonthInput.addEventListener('input', () => {
-	const expirationMonthOutput = document.querySelector('.card-front__exp-month');
-
-	checkInputLength(expirationMonthInput);
-	validateOutput(expirationMonthInput, expirationMonthOutput, '00');
+inputArray.forEach((input) => {
+	input.addEventListener('input', () => {
+		switch(input) {
+			case cardHolderNameInput:
+				const cardHolderNameOutput = document.querySelector('.card-front__holder-name');
+				checkInputLength(input);
+				validateOutput(input, cardHolderNameOutput, 'JANE APPLESEED');
+				break;
+			case cardNumberInput:
+				const cardNumberOutput = document.querySelector('.card-front__card-number');
+				checkInputLength(input);
+				validateOutput(input, cardNumberOutput, '0000 0000 0000 0000');
+				break;
+			case expirationMonthInput:
+				const expirationMonthOutput = document.querySelector('.card-front__exp-month');
+				checkInputLength(input);
+				validateOutput(input, expirationMonthOutput, '00');
+				break;
+			case expirationYearInput:
+				const expirationYearOutput = document.querySelector('.card-front__exp-year');
+				checkInputLength(input);
+				validateOutput(input, expirationYearOutput, '00');
+				break;
+			case securityCodeInput:
+				const securityCodeOutput = document.querySelector('.card-back__cvc');
+				checkInputLength(input);
+				validateOutput(input, securityCodeOutput, '000');
+				break;	
+		}
+	});
 });
 
 expirationMonthInput.addEventListener('focusout', () => {
@@ -130,33 +169,23 @@ expirationMonthInput.addEventListener('focusout', () => {
 	addZero(expirationMonthInput, expirationMonthOutput);
 });
 
-expirationYearInput.addEventListener('input', () => {
-	const expirationYearOutput = document.querySelector('.card-front__exp-year');
-
-	checkInputLength(expirationYearInput);
-	validateOutput(expirationYearInput, expirationYearOutput, '00');
-});
-
 expirationYearInput.addEventListener('focusout', () => {
 	const expirationYearOutput = document.querySelector('.card-front__exp-year');
 
 	addZero(expirationYearInput, expirationYearOutput);
 });
 
-securityCodeInput.addEventListener('input', () => {
-	const securityCodeOutput = document.querySelector('.card-back__cvc');
-
-	checkInputLength(securityCodeInput);
-	validateOutput(securityCodeInput, securityCodeOutput, '000');
-});
-
 /* ============== Submit Form Event ================ */
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	validateInput(cardHolderNameInput);
-	validateInput(cardNumberInput);
-	validateInput(expirationMonthInput);
-	validateInput(expirationYearInput);
-	validateInput(securityCodeInput);
+	inputArray.forEach((input) => {
+		validateInput(input);
+	});
+	
+	if (!containsError()) {
+		const compleateWindow = document.querySelector('.complete-window__inner')
+		elementAppearance(form, 'hide');
+		elementAppearance(compleateWindow, 'show');
+	}
 });
